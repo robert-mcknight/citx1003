@@ -1,12 +1,12 @@
 # Table of contents
 
-* [CITS1003 Introduction to Cybersecurity](README.md)
+* [CITX1003 Introduction to Cybersecurity](README.md)
 
-## CITS1003 Lectures
+## CITX1003 Lectures
 
 * [Lecture Materials](lecture-materials.md)
 
-## CITS1003 Labs
+## CITX1003 Labs
 
 * [Introduction to Labs](cits1003-labs/introduction-to-labs.md)
 * [Lab 1: Setting up your laptop](cits1003-labs/setting-up-your-laptop.md)
