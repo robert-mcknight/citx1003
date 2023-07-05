@@ -2,7 +2,7 @@
 
 ### Availability
 
-The project questions are now available on the CTF flag submission site: [https://labs.cits1003.jinhong.org/](https://labs.cits1003.jinhong.org)
+The project questions will be available on the LMS under "My Assessments"
 
 ### Questions
 
@@ -22,15 +22,15 @@ Your write-up report is submitted on LMS (a single PDF file, others are ignored/
 
 ### Duration
 
-The project starts from (week 7) 17 April 2023 and will close on (week 12) Friday 26 May 2023 5pm (6 weeks). There should be plenty of time to complete the project.
+The project starts from week 7 and will close in week 12 (6 weeks). There should be plenty of time to complete the project.
 
 ### Getting help
 
-Yes, you can ask for help during the labs but the lab facilitators won't be giving you the answers directly but give you a general direction to explore from. You can also discuss on Teams, but make sure you are not giving away answers or workflow that leads to answers directly. You are also welcome to discuss the general approach to solving the challenges, but you should not share flags or provide walkthroughs. Penalties are severe as this falls into academic misconduct.
+Yes, you can ask for help during the labs but the unit coordinator won't be giving you the answers directly but give you a general direction to explore from. You can also discuss on Teams, but make sure you are not giving away answers or workflow that leads to answers directly. You are also welcome to discuss the general approach to solving the challenges, but you should not share flags or provide walkthroughs. Penalties are severe as this falls into academic misconduct.
 
 ### Academic misconduct
 
-If you are unsure whether what you planning to do would be academic misconduct or not, please check with the lab facilitators or the unit coordinator.&#x20;
+If you are unsure whether what you planning to do would be academic misconduct or not, please check with the the unit coordinator.&#x20;
 
 ### Final reminder
 
