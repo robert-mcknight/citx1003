@@ -288,7 +288,7 @@ There will be a file called flag.txt in the directory. We can view the contents 
 {% endtab %}
 {% endtabs %}
 
-**Flag: Submit the flag on the CTF server that you just found!**
+**Flag: Submit the flag to the LMS**
 
 ## Case study: Mainstream cyber attacks: data breach
 
