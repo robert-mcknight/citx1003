@@ -1,196 +1,71 @@
 # Lab 1: Setting up your laptop
 
-## 1. The easiest way to set up VMs for labs START HERE FIRST!
+## 1. Virtual Machines
 
-What follows below is if you want to install VMWare and Kali basically from scratch. I have provided ready-made images however of ParrotOS and made download of VMWare for Mac and Windows available. So to install on Windows, just download VMWare Workstation and then the Intel version of the ParrotOS VM. For Mac, install VMWare Fusion Pro and if you have a new mac install the "arm" version of ParrotOS. If you have an old Intel-based Mac, then the Intel version - same as windows.
+The first tool we will set up on our devices is a Virtual Machine Manager (or Hypervisor). This software allows you to create and run virtual computer systems and other operating systems. There are many different Virtual Machine Managers, for this unit we recommend using VMWare, however, VirtualBox, Hyper-V, UTM or similar will also work.
 
-### Step 1: Install VMWare
+### Step 1: Download the correct VMWare File
 
-VMWare is the software that you will use to run the ParrotOS virtual machine we will download in Step 2.
+You can find the VMWare install files on [https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226](Microsoft Teams) under "Files". 
 
-**VMWare for Mac:** [https://cits1003-vmware.s3.ap-southeast-2.amazonaws.com/VMware-Fusion-13.5.2-23775688_universal.dmg](https://cits1003-vmware.s3.ap-southeast-2.amazonaws.com/VMware-Fusion-13.5.2-23775688_universal.dmg)  \
-**VMWare for Windows:** [https://cits1003-vmware.s3.ap-southeast-2.amazonaws.com/VMware-workstation-full-17.5.2-23775571.exe](https://cits1003-vmware.s3.ap-southeast-2.amazonaws.com/VMware-workstation-full-17.5.2-23775571.exe)
+If you're using a Windows computer, Download the VMWare Workstation install file from Teams and install the software.
+If you're using an Apple Mac computer, Download the VMWare Fusion install file from Teams and install the software.
 
-### Step 2: Download ParrotOS Virtual Machine
 
-**VM for Mac with Apple Silicon:** [https://cits1003-vms.s3.ap-southeast-2.amazonaws.com/arm64/ParrotOS.vmwarevm.zip](https://cits1003-vms.s3.ap-southeast-2.amazonaws.com/arm64/ParrotOS.vmwarevm.zip)  \
-**VM for Windows and Intel Mac:** [https://cits1003-vms.s3.ap-southeast-2.amazonaws.com/intel/ParrotOS.vmwarevm.zip](https://cits1003-vms.s3.ap-southeast-2.amazonaws.com/intel/ParrotOS.vmwarevm.zip)
+### Step 2: Extract the Virtual Machine files
+
+If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file.
+
+ - Create a folder somewhere on your computer (eg. Documents\\Kali\\)
+
+ - Extract the files from the .7z archive into the folder. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
+
+If you're using an Apple Mac computer, Download the .iso file.
+
+ - Create a folder somewhere on your computer (eg. ~/Documents/Kali/)
+
+ - save the .iso file to the folder.
+
+
 
 ### Step 3: Open the Virtual Machine in VMWare
 
-The username and password for the VMs is:
+If you are using a Windows computer, the vm image (.vmx file) should open in VMWare. You can then run your virtual machine.
 
-**username:** wsuser  \
-**password:** ws1003admin
+If you're using an Apple Mac computer, you will need to create a new virtual machine, select "Install from disc or image" and select the .iso file from the list. This process will require manually installing Kali.
 
-** Then go to the questions at the end of this page **
+The default username and password for the VMs is:
 
-If you don't want to do this - then read all that follows:
+**username:** kali  \
+**password:** kali
 
-**Walkthrough video**:
 
-Please NOTE, the walkthrough videos are for the guidance only, remember to use the lab materials provided in this labsheet, not from the walkthrough video!
+**If you get stuck installing VMware or Kali, you can contact your Unit Coordinator.**
+**There are several other alternatives to VMWare such as [https://www.virtualbox.org/wiki/Downloads](Virtual Box) for Windows or [https://mac.getutm.app/](UTM) for Mac**
 
-**Docker and Bash 1-1** [https://www.youtube.com/watch?v=4vl4aUxo8Hk](https://www.youtube.com/watch?v=4vl4aUxo8Hk)
+ - If you want to try an alternative for Windows, you can install Virtual Box for free and download the virtual box vm image from [https://www.kali.org/get-kali/#kali-virtual-machines](here).
 
-## Different ways to set up VMs
+ - If you want to try an alternative for Apple Mac, you can install UTM and download the UTM vm image from [https://mac.getutm.app/gallery/kali-2023](here).
 
-We will set up various software that will be used in the labs, with the main one being _**Docker**_. However, it is a good idea to create a folder specifically for organising the different week's labs.
 
-There are three different ways to setup your lab environment:
+## 2. Installing and running Docker
 
-1. Using VM (recommended, industry best practice).
-2. Using your Host (could be dangerous, only for those of you who know what you are doing).
-3. Using Cloud (e.g., Azure, Google Cloud, AWS etc.).
+We will be using a technology called _Docker_ to run different environments on your laptop. 
 
-#### See below if you are planning to use VM.
+You can get a comprehensive overview of what Docker is from here [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/). To summarise though, Docker allows you to "package and run applications in a loosely isolated environment called a container". Containers are a way of virtualizing an environment by using the native operating system's functionality to isolate application environments.
 
-![](../.gitbook/assets/1003\_vm\_route.png)
+### 2.1. Installing Docker (Windows/Mac/Linux)
 
-#### See below if you are planning to use Host.
+Although it is possible to install Docker on your host computer, it's reccommended to install it inside your Kali Linux VM instead.
 
-![](../.gitbook/assets/1003\_host\_route.png)
-
-If you are planning to use the cloud, see [section 2.2](lab-1-setting-up-your-laptop.md#id-2.2.-cloud-desktop).
-
-## 2. Alternate ways of setting up a Virtual Machine (VM) to do labs
-
-A VM is a piece of software that allows you to emulate or virtualise an operating system such as Windows or a distribution of GNU/Linux. It is recommended to run the labs inside a VM for security (this adds another layer of protection, and as well as in an unlikely event where you break any configurations that could affect your host computer), especially for ones where we are handling live malware samples (e.g., labs 7 and 10). The malware samples are not capable of breaking out of docker containers to affect your host machine, but in general, it is a good idea to handle them inside a VM just in case you accidentally run them - this is also how it is done in the industry.
-
-For the labs, you will work in an Linux based operating system inside of a VM. Operating systems are often distributed as installer images (`iso` file format) which will need to be manually installed, or pre-built VM images which can be directly imported into a VM without installation. Since VM images do not require installation, we will use this where possible.
-
-Please refer to [section 1.1](lab-1-setting-up-your-laptop.md#id-1.1.-windows-macos-non-m1-linux) or [1.2](lab-1-setting-up-your-laptop.md#id-1.2.-m1-m2-etc.-macbook-users) for specific set up instructions for your system.
-
-### 2.1. Windows/MacOS (non-M1)/Linux
-
-There are many VM software you can use, such as VirtualBox, VMWare, etc. You can use any of those, but if you don't know where to start, you can start with [VirtualBox](https://www.virtualbox.org). If this isn't working for you, you could try [VMWare Workstation Player](https://www.vmware.com/au/products/workstation-player.html).
-
-Once you have installed the VirtualBox (or something equivalent), we need to download the VM image we want to use. [Kali Linux](https://www.kali.org) (preferred) or [Ubuntu](https://ubuntu.com/download#download) are both good choices. You can choose other lightweight versions like [Lubuntu](https://cdimage.ubuntu.com/lubuntu/releases/20.04/release/) if you prefer.
-
-For Kali Linux, you can directly download the VM image for VirtualBox [here](https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-virtualbox-amd64.7z) or VMWare [here](https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-vmware-amd64.7z). A `.7z` file will start downloading. This type of file (short for 7zip) is a file archive format which allows multiple files and directories to be compressed into a single archive file. The Kali Linux VM image will be inside the 7zip archive we are downloading. Once the 7zip archive is downloaded, you will need to extract the VM image. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
-
-Now, you will need to import the VM image into your VM.
-
-**The username and password for the pre-built Kali VM image is both `kali`.**
-
-{% hint style="info" %}
-When specifying the disk size, assign 30GB disk space. It won't fully occupy 30GB on your machine, as the size will dynamically adjust as you use it.
-
-FYI, I tested using Lubuntu - 1CPU and 2GB RAM and albeit a bit slow, I have successfully ran all labs.
-
-For the Kali or Ubuntu image, 2CPU and 4GB RAM is recommended.
-{% endhint %}
-
-For some labs, you would want to provide more RAM and CPU provided your computer has more RAM and CPU to work with. These can be done in the settings (but remember to shut down the VM to do this).
-
-{% hint style="info" %}
-Sometimes the VM will freeze. You might want to reset (Machine -> Reset) and it _usually_ fixes the issue. If not, you can try shutting down and restarting the VM. You may have to repeat this a few times. Some common solutions include:
-
-* changing the graphics controller (trial and error)
-* adding more RAM (don't need more than 2 CPU)
-* adding more storage (20GB -> 30GB)
-{% endhint %}
-
-Once you have imported a pre-built Linux VM image or manually installed a Linux distribution onto your VM, you can carry on with the labs as instructed.
-
-Now, go to [`Section 4.1. Installing Docker`](lab-1-setting-up-your-laptop.md#id-4.1.-installing-docker-windows-mac-linux)
-
-### 2.2. M1/M2/M3 etc. MacBook Users
-
-For M1/B2 Macs, you will need to use the VM UTM. You can download it here: [https://mac.getutm.app/](https://mac.getutm.app)
-
-The Kali VM on UTM runs all labs as intended, so this should work for you for this unit.
-
-The Apple Silicon laptops have fundamentally different CPU architecture which causes some issues, but for the purpose of this unit, it will just be fine.
-
-You are also recommended to install **Kali Linux**, but you can use other generic OSes such as Ubuntu. You can find useful instructions for creating a Kali VM in UTM here:
-
-[https://mac.getutm.app/gallery/kali-2023](https://mac.getutm.app/gallery/kali-2023)
-
-{% hint style="info" %}
-If you have a black screen when installing Kali, please go to settings and "+ New..." in Devices, and add Serial. Then start the VM, you can install using the Serial (terminal). Once the installation is finished, you can remove the Serial device.
-
-If you have a blue screen after installing Kali, please go to settings -> Display -> Emulated Display Card, and select any non-GUI options (e.g., virtio-ramfd).
-{% endhint %}
-
-Now, go to [`Section 4.1. Installing Docker`](lab-1-setting-up-your-laptop.md#id-4.1.-installing-docker-windows-mac-linux)
-
-## 3. Doing labs on your host machine
-
-You can skip section 2 entirely if you have setup a VM to do the labs. But later if you decided to do some labs on your host machine, you can come back here and follow the instructions.
-
-Please note, this is NOT the recommended way of setting it up, but it might be useful if your laptop is not sufficiently powered to run VMs.
-
-### 3.1. Windows
-
-The first step is to install WSL2 on Windows. Open **administrator** PowerShell or Windows Command Prompt and type in:
-
-```
-wsl --install
-```
-
-Once complete, restart your machine.
-
-To test this out, type `wsl` in the search bar and run the command prompt.
-
-Now, go to [`Section 4.1. Installing Docker`](lab-1-setting-up-your-laptop.md#id-4.1.-installing-docker-windows-mac-linux)
-
-### 3.2. Cloud desktop
-
-If you are unable to get your laptop/PC working, another option is to run Windows 10 on a Virtual Machine on Azure. However, if we are going to use a cloud (i.e., Azure), then you can install Ubuntu on it instead of putting on a Windows image and setting up WSL and docker. Nevertheless, to do this, you will need a student account created on https://portal.azure.com/.
-
-{% hint style="info" %}
-Alternate cloud providers include Google Cloud, Amazon AWS etc.
-{% endhint %}
-
-You can create a VM using Windows 10 Pro 21 H1 and pick a Standard\_D2s\_V3 machine. Use all of the default settings but select Australia as the region to run it in (if you are located internationally, pick a region close to you).
-
-Once created, you can connect to the machine via remote desktop and then configure the machine as above.
-
-{% hint style="warning" %}
-Although you have credit when creating a student account, be careful with the machine and stop it running by using the console when you are not using it - that way you will not be charged for the time you are not using it.
-{% endhint %}
-
-Now you can treat this cloud desktop as your host. If you selected a Windows VM, then go to [`Section 3.1. Windows`](lab-1-setting-up-your-laptop.md#id-3.1.-windows), otherwise go to [`Section 4.1. Installing Docker`](lab-1-setting-up-your-laptop.md#id-4.1.-installing-docker-windows-mac-linux)
-
-### 3.3. Apple Mac M1 (Apple Silicon) Users: Enable Rosetta
-
-Apple's computers are increasingly using the new M1 chip (ARM architecture) that uses a different instruction set than the Intel-based Macs (AMD architecture). Apple allows programs built for the Intel chip to run by using an emulator called Rosetta 2. If you have not already installed it, then:
-
-1. Open a Terminal window
-2. Type (paste) the command `/usr/sbin/softwareupdate --install-rosetta --agree-to-license`
-
-Once this is done, you can proceed with installing and running Docker (below).
-
-Whilst most of the Docker images in the labs can be run on the Apple M1, there may be warnings given about the platform (you may be able to avoid this warning by passing the argument `--platform linux/amd64`). We have created a multi-platform version for some images, which should be auto-selected when those images are used.
-
-
-
-## 4. Installing and running Docker
-
-We will be using a technology called _Docker_ to run different environments on your laptop. Unfortunately, this environment will not be available on the lab machines, so you will have to bring your own device. For the sake of this unit, you do not need to understand how and why this works.
-
-You can get more comprehensive overview of what Docker is from here [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/). To summarise though, Docker allows you to "package and run an application in a loosely isolated environment called a container". Containers are a way of virtualizing an environment by using the native operating system's functionality to isolate application environments.
-
-### 4.1. Installing Docker (Windows/Mac/Linux)
-
-{% hint style="warning" %}
-If you have installed a VM, install Docker inside your VM.
-{% endhint %}
-
-Docker on Kali and Ubuntu linux can be installed by running the following commands:
+Docker on Kali linux can be installed by running the following commands in a terminal:
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y docker.io
-sudo systemctl enable docker --now
+sudo apt update
+sudo apt install docker.io
 ```
 
-An official guide for getting started with Docker can be found below:
-
-{% embed url="https://www.docker.com/get-started" %}
-
-
+This uses the "Aptitude Package Manager" to download and install the docker application. Apt can be used to install many different programs and packages from the command-line terminal.
 
 ### 4.2. Testing Docker
 
