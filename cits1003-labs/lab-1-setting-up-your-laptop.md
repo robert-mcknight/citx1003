@@ -20,7 +20,7 @@ If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.
 
  - Extract the files from the .7z archive into the folder. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
 
-If you're using an Apple Mac computer, Download the .iso file.
+If you're using an Apple Mac computer, Download the kali-linux-2024.3-installer-arm64.iso file.
 
  - Create a folder somewhere on your computer (eg. ~/Documents/Kali/)
 
