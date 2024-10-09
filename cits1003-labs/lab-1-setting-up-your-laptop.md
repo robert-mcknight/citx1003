@@ -6,7 +6,7 @@ The first tool we will set up on our devices is a Virtual Machine Manager (or Hy
 
 ### Step 1: Download the correct VMWare File
 
-You can find the VMWare install files on [https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226](Microsoft Teams) under "Files". 
+You can find the VMWare install files on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
 
 If you're using a Windows computer, Download the VMWare Workstation install file from Teams and install the software.
 If you're using an Apple Mac computer, Download the VMWare Fusion install file from Teams and install the software.
@@ -41,11 +41,11 @@ The default username and password for the VMs is:
 
 
 **If you get stuck installing VMware or Kali, you can contact your Unit Coordinator.**
-**There are several other alternatives to VMWare such as [https://www.virtualbox.org/wiki/Downloads](Virtual Box) for Windows or [https://mac.getutm.app/](UTM) for Mac**
+**There are several other alternatives to VMWare such as [Virtual Box](https://www.virtualbox.org/wiki/Downloads) for Windows or [UTM](https://mac.getutm.app/) for Mac**
 
- - If you want to try an alternative for Windows, you can install Virtual Box for free and download the virtual box vm image from [https://www.kali.org/get-kali/#kali-virtual-machines](here).
+ - If you want to try an alternative for Windows, you can install Virtual Box for free and download the virtual box vm image from [here](https://www.kali.org/get-kali/#kali-virtual-machines).
 
- - If you want to try an alternative for Apple Mac, you can install UTM and download the UTM vm image from [https://mac.getutm.app/gallery/kali-2023](here).
+ - If you want to try an alternative for Apple Mac, you can install UTM and download the UTM vm image from [here](https://mac.getutm.app/gallery/kali-2023).
 
 
 ## 2. Installing and running Docker
