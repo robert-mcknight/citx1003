@@ -48,6 +48,7 @@ The default username and password for the kali VMs is:
 
  - If you want to try an alternative for Windows, you can install Virtual Box for free and download the virtual box vm image from [here](https://www.kali.org/get-kali/#kali-virtual-machines).
 
+ - If you want to try an alternative for Apple Mac, you can try installing VMWare Fusion and creating a Kali VM through that.
 
 ## 2. Installing and running Docker
 
