@@ -4,48 +4,49 @@
 
 The first tool we will set up on our devices is a Virtual Machine Manager (or Hypervisor). This software allows you to create and run virtual computer systems and other operating systems. There are many different Virtual Machine Managers, for this unit we recommend using VMWare, however, VirtualBox, Hyper-V, UTM or similar will also work.
 
-### Step 1: Download the correct VMWare File
+You can find the files used in the following steps on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
 
-You can find the VMWare install files on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
+### Step 1: Install a Virtual Machine Manager
 
-If you're using a Windows computer, Download the VMWare Workstation install file from Teams and install the software.
-If you're using an Apple Mac computer, Download the VMWare Fusion install file from Teams and install the software.
+If you're using a Windows computer, download the "VMWare Workstation" install file from Teams and install the software.
 
+
+If you're using an Apple Mac computer, go to the [UTM](https://mac.getutm.app/) website and install the UTM virtualization software.
 
 ### Step 2: Extract the Virtual Machine files
 
-If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file.
+If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file from the "VMWare Workstation" folder on Teams. If the file fails to download, you can also download it from the [Kali Linux](https://www.kali.org/get-kali/#kali-virtual-machines) website.
 
  - Create a folder somewhere on your computer (eg. Documents\\Kali\\)
 
  - Extract the files from the .7z archive into the folder. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
 
-If you're using an Apple Mac computer, Download the kali-linux-2024.3-installer-arm64.iso file.
+
+If you're using an Apple Mac computer, Download the kali-linux-2023-arm64-utm.zip file from the "UTM" folder on Teams. If the file fails to download, you can also download it from the [UTM Virtual Machine Gallery](https://mac.getutm.app/gallery/kali-2023) website.
 
  - Create a folder somewhere on your computer (eg. ~/Documents/Kali/)
 
- - save the .iso file to the folder.
-
+ - Extract the files from the .zip archive into the folder.
 
 
 ### Step 3: Open the Virtual Machine in VMWare
 
 If you are using a Windows computer, the vm image (.vmx file) should open in VMWare. You can then run your virtual machine.
 
-If you're using an Apple Mac computer, you will need to create a new virtual machine, select "Install from disc or image" and select the .iso file from the list. This process will require manually installing Kali.
 
-The default username and password for the VMs is:
+If you're using an Apple Mac computer, the vm image  should open in UTM. You can then run your virtual machine.
+
+
+The default username and password for the kali VMs is:
 
 **username:** kali  \
 **password:** kali
 
 
 **If you get stuck installing VMware or Kali, you can contact your Unit Coordinator.**
-**There are several other alternatives to VMWare such as [Virtual Box](https://www.virtualbox.org/wiki/Downloads) for Windows or [UTM](https://mac.getutm.app/) for Mac**
+**There are several other alternatives to VMWare such as [Virtual Box](https://www.virtualbox.org/wiki/Downloads).**
 
  - If you want to try an alternative for Windows, you can install Virtual Box for free and download the virtual box vm image from [here](https://www.kali.org/get-kali/#kali-virtual-machines).
-
- - If you want to try an alternative for Apple Mac, you can install UTM and download the UTM vm image from [here](https://mac.getutm.app/gallery/kali-2023).
 
 
 ## 2. Installing and running Docker
@@ -126,7 +127,7 @@ sudo docker run -it --rm uwacyber/cits1003-labs:bash
 
 This will automatically remove the container so you don't have to go to GUI to do it (of course, nothing you do in this container will be saved).
 
-If you saved the container (i.e., not using the `--rm` flag) and wants to restart that container that has stopped, first find the container ID you want to restart:
+If you saved the container (i.e., not using the `--rm` flag) and want to restart that container that has stopped, first find the container ID you want to restart:
 
 ```bash
 sudo docker ps -a
