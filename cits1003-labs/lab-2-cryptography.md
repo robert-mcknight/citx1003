@@ -487,7 +487,7 @@ Which of the following accurately describes the primary purpose of encryption? &
 4.  Encryption primarily involves the use of hashing algorithms. 
 
 {% hint style="info" %}
-Submit the correct option as your flag (e.g., CITS1003{1} if option 1 is the correct answer).
+Submit the correct option as your flag (e.g., CITX1003{1} if option 1 is the correct answer).
 {% endhint %}
 
 ### Question 7. Salting
@@ -501,5 +501,5 @@ Regarding salting, which of the following is accurate? &#x20;
 
 
 {% hint style="info" %}
-Submit the correct option as your flag (e.g., CITS1003{1} if option 1 is the correct answer).
+Submit the correct option as your flag (e.g., CITX1003{1} if option 1 is the correct answer).
 {% endhint %}
