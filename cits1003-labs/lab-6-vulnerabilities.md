@@ -82,30 +82,19 @@ Before we look at the site, we are going to install a program called OWASP ZAP t
 This is least resource intensive, especially running on a VM (the docker method will be quite slow).
 
 Install OWASP ZAP for your platform from [https://www.zaproxy.org/download/](https://www.zaproxy.org/download/)
-If you are on Kali, you can download the Linux version (this works for Apple Silicon too).
+If you are on Kali, you can download the Linux version with the apt package manager.
 
 To install, you must be root, i.e.,:
 
 ```bash 
-sh ZAP_11_1_unix.sh
+sudo apt update
+sudo apt install zaproxy
 ```
 
 Once the installation finished following the GUI prompt (default settings should be fine), the ZAP application should now be available.
 
 Now you can begin your attack e.g., your attack address will be `http://172.17.0.1:3000` in your Kali VM.
-{% endtab %}
 
-{% tab title="Run ZAP docker (for all)" %}
-You can run OWASP ZAP as a Docker container by using the command:
-
-`$ sudo docker run -u zap -p 8080:8080 -p 8090:8090 -i --rm ghcr.io/zaproxy/zaproxy:stable zap-webswing.sh`
-
-You then access it through your browser using the URL `http://localhost:8080/zap`
-
-Since this is running within a container, you need to use the host address `host.docker.internal` instead of `127.0.0.1`
-
-If you receive a message to restart your ZAP session, it will be better for you to run the ZAP application instead.
-{% endtab %}
 {% endtabs %}
 
 Open ZAP and configure the software to scan the Juice Shop website:&#x20;
