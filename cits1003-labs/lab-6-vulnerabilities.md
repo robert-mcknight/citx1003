@@ -95,6 +95,7 @@ Once the installation finished following the GUI prompt (default settings should
 
 Now you can begin your attack e.g., your attack address will be `http://172.17.0.1:3000` in your Kali VM.
 
+{% endtab %}
 {% endtabs %}
 
 Open ZAP and configure the software to scan the Juice Shop website:&#x20;
