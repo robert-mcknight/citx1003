@@ -79,8 +79,6 @@ Before we look at the site, we are going to install a program called OWASP ZAP t
 
 {% tabs %}
 {% tab title="Run ZAP application" %}
-This is least resource intensive, especially running on a VM (the docker method will be quite slow).
-
 Install OWASP ZAP for your platform from [https://www.zaproxy.org/download/](https://www.zaproxy.org/download/)
 If you are on Kali, you can download the Linux version with the apt package manager.
 
