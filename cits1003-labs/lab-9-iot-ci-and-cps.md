@@ -153,7 +153,7 @@ To achieve this we would put `f8ffc201fae5;cp /etc/passwd test.html;` into the t
 
 ### 1.1. Exploit Code
 
-Because the Javascript that runs inside the browser does check correctly to ensure that any inputted MAC address is correct, we can't just type this into the web application directly.
+Because the Javascript that runs inside the browser does correctly validate the user input to ensure that only a MAC address is entered, we can't just type this into the web application directly.
 However, because that check is client-side, we can skip it by writing a small exploit script.
 
 To run the exploit script on a vulnerable device, you would run something like:
