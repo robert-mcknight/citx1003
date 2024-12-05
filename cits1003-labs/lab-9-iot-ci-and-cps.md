@@ -151,21 +151,18 @@ wr_mfg_data -m f8ffc201fae5;cp /etc/passwd test.html; -c 1
 
 To achieve this we would put `f8ffc201fae5;cp /etc/passwd test.html;` into the text box for the MAC address. The second command copies the password file to an HTML file test.html that we can then access from the website. However, for this to work, we need to bypass a JavaScript validation check in the browser of the MAC address but that is trivial to do, which we will do below.
 
-### 1.1. Testing the Vulnerability
+### 1.1. Exploit Code
 
-Instead of going out and buying a wireless router to test this on, we can run the firmware in an emulator. For this purpose, I have set up an emulation of this firmware so you can access the router page from your browser. You can go to the address shown in the below infobox.
+Because the Javascript that runs inside the browser does check correctly to ensure that any inputted MAC address is correct, we can't just type this into the web application directly.
+However, because that check is client-side, we can skip it by writing a small exploit script.
 
-{% hint style="info" %}
-Currently, the emulator is running at [http://35.226.1.51](http://35.226.1.51) (you can also check it out using your browser). If this address changes, you will see an update here.&#x20;
-
-If the address doesn't work, please let the Unit Coordinator know.
-{% endhint %}
-
-There is an open source toolset that allows you to do that called `Firmadyne`. However, it is beyond the scope of this lab to set that up and get it running. Instead, you can access the emulator server I have setup and use the exploit script on it. To run this, you can type:
+To run the exploit script on a vulnerable device, you would run something like:
 
 ```bash
-./exploit.py [IP address of the emulator (e.g., 35.226.1.51)] /etc/passwd
+./exploit.py [IP address of the router] /etc/passwd
 ```
+
+Then the output would be something like:
 
 ```bash
 root:x:0:0:root:/root:/bin/sh
@@ -185,21 +182,17 @@ sshd:x:103:99:Operator:/var:/bin/sh
 admin:x:0:0:Default non-root user:/home/cli/menu:/usr/sbin/cli
 ```
 
-The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you go to the `http://[emulator address]/test.html`, you should be able to see the content of `/etc/passwd` (note that, you couldn't do this via the web interface because it got blocked by the Javascript!).
+The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you went to the `http://[router address]/test.html`, you should be able to see the content of `/etc/passwd` 
 
-{% hint style="warning" %}
-Because this emulator will be shared with other students, you may see different content inside `test.html` if the other students loaded a different content inside. However, the chances of this happening should be very low. If any issues, contact the Unit Coordinator.
-{% endhint %}
+If you would like to test this out yourself, you can run an emulation of the router, Instructions are below in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section (note. This is optional and not required to get the flag).
 
-If you are interested, you can look at the code in the Python script `exploit.py`. It takes two arguments, the address of the emulation and the file on the router you want to look at. Of course, the script could be changed to insert a backdoor into the router and then gain access to the network that the router is connected to (but it is outside the scope of this unit).
+### Question 1. Look at the exploit code to find the flag 
+Take a look at the code in the Python script `exploit.py`. 
 
-If you would like to setup the emulation yourself and test it, I have included the instructions in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section.
+It takes two arguments, the address of the emulation and the file on the router you want to look at. It then copies that file into a "Test.html" file.
+Note that the script could be changed to instead insert a backdoor into the router and then gain access to the network that the router is connected to (but that is outside the scope of this unit).
 
-### Question 1. Exploit to find the flag 
-
-The flag is `CITS1003{R0u73r5_5h4ll_B0w_70_7h3_H4ck3r5!}`.
-
-Flag: Run `exploit.py` and pass the argument `flag.txt` 
+Flag: Inspect the exploit code carefully to find the flag or Run `exploit.py` and pass the argument `flag.txt` to reveal it.
 
 ## 2. Searching for Hard Coded Credentials
 
