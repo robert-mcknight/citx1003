@@ -189,7 +189,7 @@ If you would like to test this out yourself, you can run an emulation of the rou
 ### Question 1. Look at the exploit code to find the flag 
 Take a look at the code in the Python script `exploit.py`. 
 
-It takes two arguments, the address of the emulation and the file on the router you want to look at. It then copies that file into a "Test.html" file.
+It takes two arguments, the address of the router and the file on the router you want to look at. It then copies that file into a "Test.html" file.
 Note that the script could be changed to instead insert a backdoor into the router and then gain access to the network that the router is connected to (but that is outside the scope of this unit).
 
 Flag: Inspect the exploit code carefully to find the flag or Run `exploit.py` and pass the argument `flag.txt` to reveal it.
