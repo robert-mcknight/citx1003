@@ -60,7 +60,7 @@ kernel.md5
 The `vmlinux.gz.uImage` is the actual kernel of the operating system and contains all of the code that will run that when booted on a device. The `rootfs.sqaushfs` is the file system in `squashfs` format. The files with the md5 extension are the MD5 hashes of the image and `squashfs` files. To look at the contents of the `squashfs` file, we need to extract this file and we can use the `binwalk` tool to do this. Due to a bug in binwalk, we will also have to limit the number of file descripters available to the shell before extracting.
 
 ```bash
-ulimit 5000
+ulimit -n 5000
 binwalk -e rootfs.squashfs
 ```
 
