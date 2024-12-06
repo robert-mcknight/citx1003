@@ -18,7 +18,7 @@ IoT has a history of poor security. One of the principle areas of concern, and o
 
 ## 1. Examining firmware
 
-In this exercise, we are going to be looking at the firmware from a Netgear Wireless Router the WNAP320 which was a consumer wireless router which went on sale in 2010 but was available for several years after that. Like all consumer router devices, it provides a web interface to administer the device. It also supports remote access using Telnet and SSH which are not enabled by default. The administration function is normally accessed by being on the local network or by using a direct cable to connect to the device. Some details of the device are provided here: [https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html](https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html)
+In this exercise, we are going to be looking at the firmware from a Netgear Wireless access point the WNAP320 which was a consumer wireless access point which went on sale in 2010 but was available for several years after that. Like all consumer access point devices, it provides a web interface to administer the device. It also supports remote access using Telnet and SSH which are not enabled by default. The administration function is normally accessed by being on the local network or by using a direct cable to connect to the device. Some details of the device are provided here: [https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html](https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html)
 
 The device ships with a default username of `admin` and a password of `password`. This is already a problem because a large number of users would leave the device configured with the defaults and never change them. You don't have to worry too much about this nowadays as the admin passwords are now randomised before being shipped out - but it is a lingering issue.
 
@@ -30,7 +30,7 @@ sudo docker run -p 8000:8000 -it --rm uwacyber/cits1003-labs:iot
 
 Change directory to `/opt/samples/WNAP320`
 
-In that directory is a ZIP file which is the firmware for the WNAP320 router (alternatively, you can still download the firmware from Netgear [http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip](http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip))
+In that directory is a ZIP file which is the firmware for the WNAP320 access point (alternatively, you can still download the firmware from Netgear [http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip](http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip))
 
 Let us unzip the file and see what it contains
 
@@ -57,9 +57,10 @@ root_fs.md5
 kernel.md5
 ```
 
-The `vmlinux.gz.uImage` is the actual kernel of the operating system and contains all of the code that will run that when booted on a device. The `rootfs.sqaushfs` is the file system in `squashfs` format. The files with the md5 extension are the MD5 hashes of the image and `squashfs` files. To look at the contents of the `squashfs` file, we need to extract this file and we can use the `binwalk` tool to do this:
+The `vmlinux.gz.uImage` is the actual kernel of the operating system and contains all of the code that will run that when booted on a device. The `rootfs.sqaushfs` is the file system in `squashfs` format. The files with the md5 extension are the MD5 hashes of the image and `squashfs` files. To look at the contents of the `squashfs` file, we need to extract this file and we can use the `binwalk` tool to do this. Due to a bug in binwalk, we will also have to limit the number of file descripters available to the shell before extracting.
 
 ```bash
+ulimit 5000
 binwalk -e rootfs.squashfs
 ```
 
@@ -159,7 +160,7 @@ However, because that check is client-side, we can skip it by writing a small ex
 To run the exploit script on a vulnerable device, you would run something like:
 
 ```bash
-./exploit.py [IP address of the router] /etc/passwd
+./exploit.py [IP address of the access point] /etc/passwd
 ```
 
 Then the output would be something like:
@@ -182,15 +183,15 @@ sshd:x:103:99:Operator:/var:/bin/sh
 admin:x:0:0:Default non-root user:/home/cli/menu:/usr/sbin/cli
 ```
 
-The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you went to the `http://[router address]/test.html`, you should be able to see the content of `/etc/passwd` 
+The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you went to the `http://[access point address]/test.html`, you should be able to see the content of `/etc/passwd` 
 
-If you would like to test this out yourself, you can run an emulation of the router, Instructions are below in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section (note. This is optional and not required to get the flag).
+If you would like to test this out yourself, you can run an emulation of the access point, Instructions are below in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section (note. This is optional and not required to get the flag).
 
 ### Question 1. Look at the exploit code to find the flag 
 Take a look at the code in the Python script `exploit.py`. 
 
-It takes two arguments, the address of the router and the file on the router you want to look at. It then copies that file into a "Test.html" file.
-Note that the script could be changed to instead insert a backdoor into the router and then gain access to the network that the router is connected to (but that is outside the scope of this unit).
+It takes two arguments, the address of the access point and the file on the access point you want to look at. It then copies that file into a "Test.html" file.
+Note that the script could be changed to instead insert a backdoor into the access point and then gain access to the network that the access point is connected to (but that is outside the scope of this unit).
 
 Flag: Inspect the exploit code carefully to find the flag or Run `exploit.py` and pass the argument `flag.txt` to reveal it.
 
@@ -438,7 +439,7 @@ We are now ready to emulate!
 3. copy the `rootfs.squashfs` into the `firmware analysis toolkit` folder.
 4. start emulation e.g., `./fat.py rootfs.squashfs`
 
-Once the emulation is running, you can access by going to the external address of your VM. You can locate your `external IP address` of your VM in the `VM instances` tab. Press the link, and you should be able to access the router interface that you just have setup.
+Once the emulation is running, you can access by going to the external address of your VM. You can locate your `external IP address` of your VM in the `VM instances` tab. Press the link, and you should be able to access the access point interface that you just have setup.
 
 {% hint style="danger" %}
 Once you finish playing with your emulator, make sure the **STOP** your VM - otherwise you will continue to lose your Google Cloud credit, and once it runs out you have to pay!
