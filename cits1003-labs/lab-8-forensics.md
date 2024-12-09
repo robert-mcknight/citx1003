@@ -404,6 +404,13 @@ For Linux (including Kali) users, Gimp is easiest installed via:
 ```
 sudo apt-get install gimp
 ```
+If gimp fails to install via apt, it can be installed using flatpak instead via:
+```
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.gimp.GIMP
+flatpak run org.gimp.GIMP
+```
 {% endhint %}
 
 The output is still inside the container which you cannot access from your VM/host. To move it to your VM/host, one easy way is to use copy function provided by docker (the command runs from your VM/host). For details, see [https://docs.docker.com/engine/reference/commandline/cp/](https://docs.docker.com/engine/reference/commandline/cp/)
