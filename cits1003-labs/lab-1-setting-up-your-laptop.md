@@ -4,7 +4,7 @@
 
 The first tool we will set up on our devices is a Virtual Machine Manager (or Hypervisor). This software allows you to create and run virtual computer systems and other operating systems. There are many different Virtual Machine Managers, for this unit we recommend using VMWare, however, VirtualBox, Hyper-V, UTM or similar will also work.
 
-You can find the files used in the following steps on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3Ap0CJY6LLikhiYOLO7Sg1Rzg3U16Cv8uwZPSHGiUaKEI1%40thread.tacv2/General?groupId=20b69dff-2ce9-424b-91c8-5467bfe753bf&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
+You can find the files used in the following steps on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3AVJsk9zd2hT8RGZJG9gsXHYLcEmnPZ99aahe9QjBlF4g1%40thread.tacv2/General?groupId=657669ea-dcc0-4fec-bae1-b5cb9f7f1cfd&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
 
 ### Step 1: Install a Virtual Machine Manager
 
