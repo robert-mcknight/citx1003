@@ -69,6 +69,17 @@ sudo apt install docker.io
 
 This uses the "Aptitude Package Manager" to download and install the docker application. Apt can be used to install many different programs and packages from the command-line terminal.
 
+#### Apple Errors
+If you are seeing errors installing applications in Kali on UTM on an Apple Mac, it may be that the signatures for the repositories are out of date (The Apple UTM version is the 2023 version of kali).
+
+To fix those errors, use the following commands before installing docker:
+```bash
+wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2024.1_all.deb
+sudo dpkg -i kali-archive-keyring_2024.1_all.deb
+sudo apt-get update
+```
+This will download the current Kali GPG Keyring and install it, allowing the APT package manager to update correctly.
+
 ### 4.2. Testing Docker
 
 To test the environment, we will run a simple container that allows you to access a bash terminal. This allows you to enter commands that get executed within the container. You can only do what the container will let you do as it is a constrained environment.
