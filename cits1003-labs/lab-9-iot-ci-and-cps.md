@@ -276,7 +276,7 @@ The dir300 is the model number and the other parts of the password don't change 
 
 ### **Question 2. Enter the password**
 
-**Flag: Enter the password to claim the flag**
+**Flag: Enter the password to claim the flag ( eg. CITS1003{password} )**
 
 Clearly it is not a good thing that the password for the router is available on a remote connection protocol like Telnet that is enabled on this router by default. DLINK has tried to improve its security including encrypting the firmware. However, even here, the key has been reverse engineered and some of the encrypted firmware that DLINK provides can be unencrypted easily.
 
