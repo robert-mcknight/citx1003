@@ -4,7 +4,7 @@
 
 The first tool we will set up on our devices is a Virtual Machine Manager (or Hypervisor). This software allows you to create and run virtual computer systems and other operating systems. There are many different Virtual Machine Managers, for this unit we recommend using VMWare, however, VirtualBox, Hyper-V, UTM or similar will also work.
 
-You can find the files used in the following steps on [Microsoft Teams](https://teams.microsoft.com/l/channel/19%3AVJsk9zd2hT8RGZJG9gsXHYLcEmnPZ99aahe9QjBlF4g1%40thread.tacv2/General?groupId=657669ea-dcc0-4fec-bae1-b5cb9f7f1cfd&tenantId=05894af0-cb28-46d8-8716-74cdb46e2226) under "Files". 
+You can find the files used in the following steps on [Microsoft Teams]https://uniwa.sharepoint.com/:f:/r/teams/CITX1003TS-UWC-T22025/Shared%20Documents/General?csf=1&web=1&e=nSaswa) under "Files". 
 
 ### Step 1: Install a Virtual Machine Manager
 
@@ -15,14 +15,14 @@ If you're using an Apple Mac computer, go to the [UTM](https://mac.getutm.app/) 
 
 ### Step 2: Extract the Virtual Machine files
 
-If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file from the "VMWare Workstation" folder on Teams. If the file fails to download, you can also download it from the [Kali Linux](https://www.kali.org/get-kali/#kali-virtual-machines) website.
+If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file from the "Windows" folder on Teams. If the file fails to download, you can also download it from the [Kali Linux](https://www.kali.org/get-kali/#kali-virtual-machines) website.
 
  - Create a folder somewhere on your computer (eg. Documents\\Kali\\)
 
  - Extract the files from the .7z archive into the folder. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
 
 
-If you're using an Apple Mac computer, Download the kali-linux-2023-arm64-utm.zip file from the "UTM" folder on Teams. If the file fails to download, you can also download it from the [UTM Virtual Machine Gallery](https://mac.getutm.app/gallery/kali-2023) website.
+If you're using an Apple Mac computer, Download the kali-linux-2023-arm64-utm.zip file from the "Apple" folder on Teams. If the file fails to download, you can also download it from the [UTM Virtual Machine Gallery](https://mac.getutm.app/gallery/kali-2023) website.
 
  - Create a folder somewhere on your computer (eg. ~/Documents/Kali/)
 
@@ -74,8 +74,7 @@ If you are seeing errors installing applications in Kali on UTM on an Apple Mac,
 
 To fix those errors, use the following commands before installing docker:
 ```bash
-wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2024.1_all.deb
-sudo dpkg -i kali-archive-keyring_2024.1_all.deb
+sudo wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
 sudo apt-get update
 ```
 This will download the current Kali GPG Keyring and install it, allowing the APT package manager to update correctly.
