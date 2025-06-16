@@ -18,7 +18,7 @@ IoT has a history of poor security. One of the principle areas of concern, and o
 
 ## 1. Examining firmware
 
-In this exercise, we are going to be looking at the firmware from a Netgear Wireless Router the WNAP320 which was a consumer wireless router which went on sale in 2010 but was available for several years after that. Like all consumer router devices, it provides a web interface to administer the device. It also supports remote access using Telnet and SSH which are not enabled by default. The administration function is normally accessed by being on the local network or by using a direct cable to connect to the device. Some details of the device are provided here: [https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html](https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html)
+In this exercise, we are going to be looking at the firmware from a Netgear Wireless access point the WNAP320 which was a consumer wireless access point which went on sale in 2010 but was available for several years after that. Like all consumer access point devices, it provides a web interface to administer the device. It also supports remote access using Telnet and SSH which are not enabled by default. The administration function is normally accessed by being on the local network or by using a direct cable to connect to the device. Some details of the device are provided here: [https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html](https://usermanual.wiki/Netgear/NetgearWnap320QuickReferenceGuide.33658341/html)
 
 The device ships with a default username of `admin` and a password of `password`. This is already a problem because a large number of users would leave the device configured with the defaults and never change them. You don't have to worry too much about this nowadays as the admin passwords are now randomised before being shipped out - but it is a lingering issue.
 
@@ -30,7 +30,7 @@ sudo docker run -p 8000:8000 -it --rm uwacyber/cits1003-labs:iot
 
 Change directory to `/opt/samples/WNAP320`
 
-In that directory is a ZIP file which is the firmware for the WNAP320 router (alternatively, you can still download the firmware from Netgear [http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip](http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip))
+In that directory is a ZIP file which is the firmware for the WNAP320 access point (alternatively, you can still download the firmware from Netgear [http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip](http://www.downloads.netgear.com/files/GDC/WNAP320/WNAP320%20Firmware%20Version%202.0.3.zip))
 
 Let us unzip the file and see what it contains
 
@@ -57,9 +57,10 @@ root_fs.md5
 kernel.md5
 ```
 
-The `vmlinux.gz.uImage` is the actual kernel of the operating system and contains all of the code that will run that when booted on a device. The `rootfs.sqaushfs` is the file system in `squashfs` format. The files with the md5 extension are the MD5 hashes of the image and `squashfs` files. To look at the contents of the `squashfs` file, we need to extract this file and we can use the `binwalk` tool to do this:
+The `vmlinux.gz.uImage` is the actual kernel of the operating system and contains all of the code that will run that when booted on a device. The `rootfs.sqaushfs` is the file system in `squashfs` format. The files with the md5 extension are the MD5 hashes of the image and `squashfs` files. To look at the contents of the `squashfs` file, we need to extract this file and we can use the `binwalk` tool to do this. Due to a bug in binwalk, we will also have to limit the number of file descripters available to the shell before extracting.
 
 ```bash
+ulimit -n 5000
 binwalk -e rootfs.squashfs
 ```
 
@@ -151,21 +152,18 @@ wr_mfg_data -m f8ffc201fae5;cp /etc/passwd test.html; -c 1
 
 To achieve this we would put `f8ffc201fae5;cp /etc/passwd test.html;` into the text box for the MAC address. The second command copies the password file to an HTML file test.html that we can then access from the website. However, for this to work, we need to bypass a JavaScript validation check in the browser of the MAC address but that is trivial to do, which we will do below.
 
-### 1.1. Testing the Vulnerability
+### 1.1. Exploit Code
 
-Instead of going out and buying a wireless router to test this on, we can run the firmware in an emulator. For this purpose, I have set up an emulation of this firmware so you can access the router page from your browser. You can go to the address shown in the below infobox.
+Because the Javascript that runs inside the browser does correctly validate the user input to ensure that only a MAC address is entered, we can't just type this into the web application directly.
+However, because that check is client-side, we can skip it by writing a small exploit script.
 
-{% hint style="info" %}
-Currently, the emulator is running at [http://35.226.1.51](http://35.226.1.51) (you can also check it out using your browser). If this address changes, you will see an update here.&#x20;
-
-If the address doesn't work, please let the Unit Coordinator know.
-{% endhint %}
-
-There is an open source toolset that allows you to do that called `Firmadyne`. However, it is beyond the scope of this lab to set that up and get it running. Instead, you can access the emulator server I have setup and use the exploit script on it. To run this, you can type:
+To run the exploit script on a vulnerable device, you would run something like:
 
 ```bash
-./exploit.py [IP address of the emulator (e.g., 35.226.1.51)] /etc/passwd
+./exploit.py [IP address of the access point] /etc/passwd
 ```
+
+Then the output would be something like:
 
 ```bash
 root:x:0:0:root:/root:/bin/sh
@@ -185,21 +183,17 @@ sshd:x:103:99:Operator:/var:/bin/sh
 admin:x:0:0:Default non-root user:/home/cli/menu:/usr/sbin/cli
 ```
 
-The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you go to the `http://[emulator address]/test.html`, you should be able to see the content of `/etc/passwd` (note that, you couldn't do this via the web interface because it got blocked by the Javascript!).
+The exploit code also copies the content of the `/etc/passwd` into the `test.html` page - so if you went to the `http://[access point address]/test.html`, you should be able to see the content of `/etc/passwd` 
 
-{% hint style="warning" %}
-Because this emulator will be shared with other students, you may see different content inside `test.html` if the other students loaded a different content inside. However, the chances of this happening should be very low. If any issues, contact the Unit Coordinator.
-{% endhint %}
+If you would like to test this out yourself, you can run an emulation of the access point, Instructions are below in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section (note. This is optional and not required to get the flag).
 
-If you are interested, you can look at the code in the Python script `exploit.py`. It takes two arguments, the address of the emulation and the file on the router you want to look at. Of course, the script could be changed to insert a backdoor into the router and then gain access to the network that the router is connected to (but it is outside the scope of this unit).
+### Question 1. Look at the exploit code to find the flag 
+Take a look at the code in the Python script `exploit.py`. 
 
-If you would like to setup the emulation yourself and test it, I have included the instructions in the [Setup Your Emulation on Google Cloud](lab-9-iot-ci-and-cps.md#undefined) section.
+It takes two arguments, the address of the access point and the file on the access point you want to look at. It then copies that file into a "Test.html" file.
+Note that the script could be changed to instead insert a backdoor into the access point and then gain access to the network that the access point is connected to (but that is outside the scope of this unit).
 
-### Question 1. Exploit to find the flag 
-
-Flag: CITS1003{4ll_y0ur_r0u73r_b3l0n6_70_u5!}
-
-Flag: Run `exploit.py` and pass the argument `flag.txt` 
+Flag: Inspect the exploit code carefully to find the flag or Run `exploit.py` and pass the argument `flag.txt` to reveal it.
 
 ## 2. Searching for Hard Coded Credentials
 
@@ -282,50 +276,57 @@ The dir300 is the model number and the other parts of the password don't change 
 
 ### **Question 2. Enter the password**
 
-**Flag: Enter the password to claim the flag**
+**Flag: Enter the password to claim the flag ( eg. CITS1003{password} )**
 
 Clearly it is not a good thing that the password for the router is available on a remote connection protocol like Telnet that is enabled on this router by default. DLINK has tried to improve its security including encrypting the firmware. However, even here, the key has been reverse engineered and some of the encrypted firmware that DLINK provides can be unencrypted easily.
 
-## Case study: Stuxnet
+## Case study: Rowhammer
 
-Stuxnet is a powerful computer worm designed by U.S. and Israeli intelligence that to disable the Iranian nuclear program in an industrial network composed of IoT devices and cyberphysical systems. Particularly, the Siemens-made equipment, which was designed to enrich uranium powering nuclear reactors, malfunctioned catastrophically because of the infection. 
+First proposed in 2014, Rowhammer is a way to induce memory errors in modern DRAM chips by repeatedly accessing rows of memory cells with a burst of read or write operations.
 
-Read through the following article and answer the questions below: [https://www.malwarebytes.com/stuxnet](https://www.malwarebytes.com/stuxnet)
+Read through the following article and answer the questions below:
+[https://news.sophos.com/en-us/2021/04/19/serious-security-rowhammer-is-back-but-now-its-called-smash/](https://news.sophos.com/en-us/2021/04/19/serious-security-rowhammer-is-back-but-now-its-called-smash/)
 
-### Question 3. Stuxnet: computer worm
 
-What is a computer worm?&#x20;
+### Question 3. The Root Cause of Rowhammer
 
-1. It is a type of malware that spreads by infecting files or programs and then spreading to other files or programs on the same computer or network. It can cause significant damage to computer systems, and can spread through infected email attachments, file downloads, etc.&#x20;
-2. It is a type of malware that is disguised as legitimate software but is actually designed to cause harm or steal information. It can spread through email attachments, file downloads, etc.&#x20;
-3. It is a type of malware that encrypts files on a computer system and then demands payment in exchange for the decryption key. As it results in the loss of important data and sensitive information, it is devastating to businesses and individuals. It can spread through email attachments, file downloads, etc.&#x20;
-4. It is a type of malware that is designed to hide its presence on a computer system by altering system files and processes. It is often used to facilitate other types of cyber attacks.&#x20;
-5. It is a type of malware that spreads from computer to computer over a network, without requiring any user interaction. It can cause significant damage to computer systems and networks by consuming network bandwidth, and stealing sensitive information.
+What is the root cause of unexpected bit flips in Rowhammer?&#x20;
+
+1. CPU cache inefficiency &#x20;
+2. Memory access sequences &#x20;
+3. DRAM refresh cycle &#x20;
+4. Repeated nanoscopic electrical activity
 
 
 {% hint style="info" %}
-Submit the correct option as your flag (e.g., `CITS1003{`1`}` if option 1 is the correct answer).
+Submit the correct option as your flag (e.g., CITS1003{1} if option 1 is the correct answer).
 {% endhint %}
 
-### Question 4. Infecting air-gapped nuclear facilities
+### Question 4. Mitigating Rowhammer
 
-How were Iranian air-gapped nuclear facilities infected by Stuxnet?&#x20;
+Which of the following is used by modern DRAM chips to prevent Rowhammer? &#x20;
 
-1. The computer worm spreads through email attachments: when victim users open these attachments, the worm is installed on their computers.&#x20;
-2. The computer worm is downloaded from untrusted sources: the worm can be downloaded automatically when victim users visit malicious or unverified websites.&#x20;
-3. The computer worm is generated by software vulnerability exploitation: attackers can exploit vulnerabilities in software to compromise computers and generate the computer worm.&#x20;
-4. The computer worm spreads through infected removable media such as USB drives or external hard drives.
+1. CPU cache &#x20;
+2. TRR (Target Row Refresh) &#x20;
+3. THP (Transparent Huge Pages) &#x20;
+4. Predictable memory allocation
 
+{% hint style="info" %}
+Submit the correct option as your flag (e.g., CITS1003{1} if option 1 is the correct answer).
+{% endhint %}
 
-### Question 5. Infecting PLCs
+### Question 5. Mitigating SMASH
 
-Which of the following did Stuxnet do to Programmable Logic Controllers (PLCs)?&#x20;
+Which of the following is an effective mitigation for SMASH on a Linux system? &#x20;
 
-1. It shut down PLCs completely, rendering the centrifuges inoperable.&#x20;
-2. It stole sensitive data from PLCs and transmitted it to remote servers.&#x20;
-3. It inserted malicious code into PLCs that allowed attackers to control and manipulate the centrifuges.&#x20;
-4. It reprogrammed PLCs to alter the speed of the centrifuges, causing damage to them.
+1. Update the browser to the latest version &#x20;
+2. Use non-TRR DRAM chips &#x20;
+3. Decrease the DRAM refresh frequency &#x20;
+4. Turn off Transparent Huge Pages (THP)
 
+{% hint style="info" %}
+Submit the correct option as your flag (e.g., CITS1003{1} if option 1 is the correct answer).
+{% endhint %}
 
 ## \[Optional] Setup Your Emulation on Google Cloud (\~45 mins)
 
@@ -438,7 +439,7 @@ We are now ready to emulate!
 3. copy the `rootfs.squashfs` into the `firmware analysis toolkit` folder.
 4. start emulation e.g., `./fat.py rootfs.squashfs`
 
-Once the emulation is running, you can access by going to the external address of your VM. You can locate your `external IP address` of your VM in the `VM instances` tab. Press the link, and you should be able to access the router interface that you just have setup.
+Once the emulation is running, you can access by going to the external address of your VM. You can locate your `external IP address` of your VM in the `VM instances` tab. Press the link, and you should be able to access the access point interface that you just have setup.
 
 {% hint style="danger" %}
 Once you finish playing with your emulator, make sure the **STOP** your VM - otherwise you will continue to lose your Google Cloud credit, and once it runs out you have to pay!

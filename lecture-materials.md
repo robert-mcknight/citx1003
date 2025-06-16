@@ -1,4 +1,4 @@
-# Lecture Materials
+# Lecture and Lab Materials
 
 Below are links to the preparation lecture videos, which you are expected to watch before coming to the scheduled lectures. Lecture slides can be downloaded from  (lecture slides may be updated, do check their updated date!) [https://github.com/robert-mcknight/citx1003/tree/main/cits1003-lecture\_slides](https://github.com/robert-mcknight/citx1003/tree/main/cits1003-lecture\_slides)
 
@@ -6,7 +6,7 @@ Below are links to the preparation lecture videos, which you are expected to wat
 
 Live lectures are streamed on MS Teams (login using your student email) in the "My Classroom" link on the LMS. If you are attending face-to-face (when available), you don't have to watch via MS Teams.
 
-Recordings of live lectures are also available (give up to 48 hours for it to be available), which are on LMS -> Lecture Recordings. 
+
 
 Below, you will find prerecorded lecture videos from the university version of the unit below, which you can watch before attending the live lectures for that week.
 
