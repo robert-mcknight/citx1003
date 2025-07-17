@@ -118,11 +118,11 @@ We are using a few template variables that will be replaced with the recipient's
 ```bash
 Dear {{.FirstName}},
 </br></br>
-Please click to <a href={{.URL}}>track</a> your parcel.
+Please click <a href={{.URL}}>here</a> to view our code on GitHub.
 </br></br>
 Regards,
 </br></br>
-Fedex
+Microsoft
 </br>
 {{.From}}
 ```
