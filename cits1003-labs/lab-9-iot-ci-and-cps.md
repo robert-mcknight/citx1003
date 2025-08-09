@@ -160,6 +160,37 @@ However, because that check is client-side, we can skip it by writing a small ex
 To run the exploit script on a vulnerable device, you would run something like:
 
 ```bash
+sudo docker run --cap-add=NET_ADMIN --device=/dev/net/tun --name firmware-emulator-container -d --rm -p 80:80 uwacyber/cits1003-labs:wnap320-emulator
+```
+
+This will start the container in the background. We use `--name firmware-emulator-container` to assign a name to this container so it can be easily killed later when no longer required.
+
+`--cap-add=NET_ADMIN --device=/dev/net/tun` gives the container access to `/dev/net/tun`, which is required by QEMU. I could not find a workaround to run the container without the permission.
+
+After that, the emulator should be working at `http://localhost:80`. You may want to access the address with your browser to ensure the emulator is completely up and running before continuing. If you see "bad gateway" error, just wait, it is likely that the emulator is starting.
+
+Then, launch the lab container (if it has already been launched, you do not need to repeat):
+
+```bash
+sudo docker run -p 8000:8000 -it --rm uwacyber/cits1003-labs:iot
+```
+
+As the emulator is running at `http://localhost:80`, to access the emulator from this lab container, we need to use the same technique as described in [lab 4](https://uwacyber.gitbook.io/cits1003/cits1003-labs/lab-4-computer-networking):
+
+Run this on your computer (not in the lab container):
+
+```bash
+ip addr
+```
+
+Look for something named like `docker0`. Usually, the IP address for the emulator container will be `172.17.0.1`.
+
+Then, do this in your lab container:
+
+```bash
+cd /opt/samples/WNAP320
+python3 ./exploit.py 172.17.0.1 /etc/passwd
+```
 ./exploit.py [IP address of the access point] /etc/passwd
 ```
 
