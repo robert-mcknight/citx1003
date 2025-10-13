@@ -4,7 +4,7 @@
 
 The first tool we will set up on our devices is a Virtual Machine Manager (or Hypervisor). This software allows you to create and run virtual computer systems and other operating systems. There are many different Virtual Machine Managers, for this unit we recommend using VMWare, however, VirtualBox, Hyper-V, UTM or similar will also work.
 
-You can find the files used in the following steps on [Microsoft Teams](https://uniwa.sharepoint.com/:f:/r/teams/CITX1003TS-UWC-T22025/Shared%20Documents/General?csf=1&web=1&e=nSaswa) under "Files". 
+You can find the files used in the following steps on [Microsoft Teams](https://uniwa.sharepoint.com/:f:/r/teams/CITX1003TS-UWC-T32025/Shared%20Documents/General/Windows?csf=1&web=1&e=tJ77TW) under "Files". 
 
 ### Step 1: Install a Virtual Machine Manager
 
@@ -15,14 +15,14 @@ If you're using an Apple Mac computer, go to the [UTM](https://mac.getutm.app/) 
 
 ### Step 2: Extract the Virtual Machine files
 
-If you're using a Windows computer, Download the kali-linux-2024.3-vmware-amd64.7z file from the "Windows" folder on Teams. If the file fails to download, you can also download it from the [Kali Linux](https://www.kali.org/get-kali/#kali-virtual-machines) website.
+If you're using a Windows computer, Download the kali-linux-2025.3-vmware-amd64.7z file from the "Windows" folder on Teams. If the file fails to download, you can also download it from the [Kali Linux](https://www.kali.org/get-kali/#kali-virtual-machines) website.
 
  - Create a folder somewhere on your computer (eg. Documents\\Kali\\)
 
  - Extract the files from the .7z archive into the folder. On Windows, you might need to install the [7-zip software](https://www.7-zip.org/download.html) to perform the extraction.
 
 
-If you're using an Apple Mac computer, Download the kali-linux-2023-arm64-utm.zip file from the "Apple" folder on Teams. If the file fails to download, you can also download it from the [UTM Virtual Machine Gallery](https://mac.getutm.app/gallery/kali-2023) website.
+If you're using an Apple Mac computer, Download the kali-linux-2025-arm64-utm.zip file from the "Apple" folder on Teams. If the file fails to download, you can also download it from this [UTM Community Virtual Machine Gallery](https://mirror.bouwhuis.network/utm/vms/kali-linux-2025.html) website.
 
  - Create a folder somewhere on your computer (eg. ~/Documents/Kali/)
 
