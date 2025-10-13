@@ -35,7 +35,7 @@ CyberChef is a website that has been developed by the UK GCHQ, a government cybe
 
 We can now try some "cryptanalysis" albeit using the unsophisticated approach of brute force. You have intercepted some encrypted text:
 
-> Esp njmpcnspq td nzzvtyr fa l dezcx!
+> KQBF1003{Bpm kgjmzkpmn qa kwwsqvo cx i abwzu!}
 
 You suspect it has been encrypted using a Caesar cipher but you need to find out the shift number. How would you find out?
 
@@ -115,7 +115,7 @@ We should get our original input "The quick brown fox"
 
 You are given the following Base64 encoded text
 
-> KxgLAE4HCE4XARtOCgEASRpOBQABGU4aBgtOBQsXQk4dDwgLThoBTg8dHRsDC04HGkkdTgEAC04MFxoLTgIBAAlA
+> LSc6Nl9eXl0VIQALMSwXGgsxBx0xDzEYCxwXMR0GARwaMQULF09PEw==
 
 You don't know the key but you can assume it is one byte long and it uses XOR as the algorithm. You are going to try and brute force it to find the key.
 
@@ -163,7 +163,7 @@ An interesting thing to note is if you change a single character in the IV, you 
 
 You are given the following Base64 encoded text
 
-> vqqjbybmIyq63sPvHyr1YjfX9c24qNVT56DXEyUmO/VxZAzc1wnA9jMljLURoDRvF6nhoUmi7H1Yd2xC30NMgfv/9y03Colw144ZVT3+5IyEdnvl3HR0wkgkkFxTs7eK
+> oJFeWqTSWj2IX/tv0W5Ryxb/fdORC3SRXbHSpWqURxpmPA13M/VG9tGaDxHWfJuz
 
 The key is _snowdenquotation_ and the IV is 0102030405060708090a0b0c0d0e0f10
 
