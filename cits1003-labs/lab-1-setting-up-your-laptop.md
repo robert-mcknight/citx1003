@@ -67,7 +67,7 @@ sudo apt update
 sudo apt install docker.io
 ```
 
-This uses the "Aptitude Package Manager" to download and install the docker application. Apt can be used to install many different programs and packages from the command-line terminal.
+This uses the "Advanced Packing Tool" to download and install the docker application. Apt can be used to install many different programs and packages from the command-line terminal.
 
 #### Apple Errors
 If you are seeing errors installing applications in Kali on UTM on an Apple Mac, it may be that the signatures for the repositories are out of date (The Apple UTM version is the 2023 version of kali).
