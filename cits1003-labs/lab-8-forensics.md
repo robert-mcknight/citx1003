@@ -421,9 +421,9 @@ When you have moved the output to your VM/host, then you can open using GIMP. Wh
 
 Offset: 5233385
 
-Width: 1500 (or 1640)
+Width: 1640
 
-Height: 350
+Height: 2000
 
 Once you open, you would still want to flip and then rotate 180 degrees to read  (although it is still possible to read the flag as is).
 
